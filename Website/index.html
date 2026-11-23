@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cars — Premium Car Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style>
+    :root {
+  --bg-mint: #eaf9f1;
+  --primary-green: #00d25b;
+  --dark-green: #063b27;
+  --text-dark: #0f172a;
+  --text-muted: #475569;
+  --white: #ffffff;
+  --shadow: 0 4px 14px rgba(6, 59, 39, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-mint);
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-top {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--text-dark);
+}
+
+.logo span {
+  color: var(--primary-green);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-actions input {
+  padding: 8px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  width: 240px;
+}
+
+.cart-btn {
+  background: var(--dark-green);
+  color: var(--white);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.nav-links {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 10px 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--primary-green);
+}
+
+/* Hero Section */
+.hero {
+  background: radial-gradient(circle at 70% 50%, #0b4f32 0%, #050a08 75%);
+  color: var(--white);
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  max-width: 520px;
+}
+
+.hero-tag {
+  color: var(--primary-green);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 900;
+  color: var(--primary-green);
+  line-height: 1.05;
+  margin: 10px 0 16px;
+  text-shadow: 0 0 25px rgba(0, 210, 91, 0.35);
+}
+
+.hero-subtitle {
+  color: #cbd5e1;
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--primary-green);
+  color: #041d11;
+  font-weight: 800;
+  padding: 12px 26px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.hero-image img {
+  max-width: 520px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* Sections & Cards */
+.section {
+  padding: 50px 20px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 28px;
+  color: var(--text-dark);
+}
+
+.product-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.five-col {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.four-col {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.badge {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: var(--primary-green);
+  color: #041d11;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.specs {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.price {
+  font-weight: 800;
+  color: var(--dark-green);
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.btn-save {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--dark-green);
+  background: transparent;
+  color: var(--dark-green);
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-save:hover {
+  background: var(--dark-green);
+  color: var(--white);
+}
+
+/* Category Grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.category-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 180px;
+  background: var(--dark-green);
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.82;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.06);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 59, 39, 0.9), transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+}
+
+.category-overlay span {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Reviews */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.review-card .stars {
+  color: var(--primary-green);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.review-card p {
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+/* FAQ Accordion */
+.faq-list {
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-answer {
+  padding: 0 20px 18px;
+  color: var(--text-muted);
+  display: none;
+  font-size: 0.95rem;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* Stats Banner */
+.stats-banner {
+  background: radial-gradient(circle at center, #0e6b43 0%, #04150d 85%);
+  color: var(--white);
+  padding: 70px 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.stats-overlay {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.stat-main h2 {
+  font-size: clamp(3rem, 7vw, 4.8rem);
+  font-weight: 900;
+  color: var(--primary-green);
+  line-height: 1;
+}
+
+.stat-main p {
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.stat-pill {
+  background: var(--white);
+  color: var(--text-dark);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Footer */
+.footer {
+  background: var(--white);
+  padding-top: 50px;
+  border-top: 1px solid #d1fae5;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 30px;
+  padding-bottom: 40px;
+}
+
+.footer h4 {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.footer a {
+  display: block;
+  text-decoration: none;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.footer a:hover {
+  color: var(--primary-green);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 18px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .five-col { grid-template-columns: repeat(3, 1fr); }
+  .four-col, .category-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-actions input { display: none; }
+  .menu-toggle { display: block; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .nav-links.open { display: flex; }
+  .review-grid, .footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .five-col, .four-col, .category-grid { grid-template-columns: 1fr; }
+}
+  </style>
+
+  <!-- Header & Navigation -->
+  <header class="navbar">
+    <div class="nav-top">
+      <div class="logo">CARS<span>.</span></div>
+      <div class="nav-actions">
+        <input type="text" id="searchInput" placeholder="Search models, SUVs, EVs..." />
+        <button class="cart-btn" id="cartBtn">Saved (<span id="cartCount">0</span>)</button>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#new-arrivals">New Arrivals</a>
+      <a href="#categories">Categories</a>
+      <a href="#electric">Electric Vehicles</a>
+      <a href="#suvs">SUVs & Crossovers</a>
+      <a href="#sedans">Luxury Sedans</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">2026 FLEET RELEASE</p>
+      <h1 class="hero-title">NEW ARRIVAL</h1>
+      <p class="hero-subtitle">Experience next-generation performance, zero-emission powertrains, and unmatched comfort at Cars.</p>
+      <a href="#new-arrivals" class="btn-primary">EXPLORE INVENTORY &rarr;</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=900&q=80" alt="Featured Sports Car" />
+    </div>
+  </section>
+
+  <!-- Section: New Arrivals -->
+  <section id="new-arrivals" class="container section">
+    <h2 class="section-title">New Arrivals</h2>
+    <div class="product-grid five-col">
+      <div class="card product-card">
+        <span class="badge">NEW</span>
+        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=500&q=80" alt="Apex GT Coupe" />
+        <h3>Apex GT Coupe</h3>
+        <p class="price">$68,500</p>
+        <button class="btn-save" onclick="saveCar('Apex GT Coupe')">Save Vehicle</button>
+      </div>
+      <div class="card product-card">
+        <span class="badge">NEW</span>
+        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=500&q=80" alt="Veloce R8 Spyder" />
+        <h3>Veloce R8 Spyder</h3>
+        <p class="price">$94,200</p>
+        <button class="btn-save" onclick="saveCar('Veloce R8 Spyder')">Save Vehicle</button>
+      </div>
+      <div class="card product-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=500&q=80" alt="Carrera S Turbo" />
+        <h3>Carrera S Turbo</h3>
+        <p class="price">$112,000</p>
+        <button class="btn-save" onclick="saveCar('Carrera S Turbo')">Save Vehicle</button>
+      </div>
+      <div class="card product-card">
+        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=500&q=80" alt="Aero EV Sedan" />
+        <h3>Aero EV Sedan</h3>
+        <p class="price">$54,900</p>
+        <button class="btn-save" onclick="saveCar('Aero EV Sedan')">Save Vehicle</button>
+      </div>
+      <div class="card product-card">
+        <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=500&q=80" alt="Terra X4 SUV" />
+        <h3>Terra X4 SUV</h3>
+        <p class="price">$61,400</p>
+        <button class="btn-save" onclick="saveCar('Terra X4 SUV')">Save Vehicle</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Shop By Category (Dark Green Accent Cards) -->
+  <section id="categories" class="container section">
+    <h2 class="section-title">Browse by Body Style</h2>
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=500&q=80" alt="Electric Vehicles" />
+        <div class="category-overlay"><span>Electric Vehicles</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=500&q=80" alt="Off-Road & 4x4" />
+        <div class="category-overlay"><span>Off-Road &amp; 4x4</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=500&q=80" alt="Executive Sedans" />
+        <div class="category-overlay"><span>Executive Sedans</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=500&q=80" alt="Supercars" />
+        <div class="category-overlay"><span>Supercars</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=500&q=80" alt="Convertibles" />
+        <div class="category-overlay"><span>Convertibles</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=500&q=80" alt="Family SUVs" />
+        <div class="category-overlay"><span>Family SUVs</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=500&q=80" alt="Compact Hatchbacks" />
+        <div class="category-overlay"><span>Compact Hatchbacks</span></div>
+      </div>
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=500&q=80" alt="Certified Pre-Owned" />
+        <div class="category-overlay"><span>Certified Pre-Owned</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Customer Reviews -->
+  <section id="reviews" class="container section">
+    <h2 class="section-title">What Drivers Say</h2>
+    <div class="review-grid">
+      <div class="card review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Buying my electric SUV from Cars was effortless. Transparent pricing, instant financing approval, and home delivery in 48 hours."</p>
+        <strong>— Marcus Vance, Verified Buyer</strong>
+      </div>
+      <div class="card review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Every vehicle on their lot is inspected to perfection. My Apex GT arrived spotless with a full 5-year powertrain warranty."</p>
+        <strong>— Elena Rostova, Verified Buyer</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Electric & Performance Fleet -->
+  <section id="electric" class="container section">
+    <h2 class="section-title">Featured Inventory</h2>
+    <div class="product-grid four-col" id="inventoryGrid">
+      <div class="card product-card" data-name="Ionix Model Z">
+        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=500&q=80" alt="Ionix Model Z" />
+        <h3>Ionix Model Z</h3>
+        <p class="specs">410 mi Range • AWD • 0-60 in 3.1s</p>
+        <p class="price">$58,000</p>
+        <button class="btn-save" onclick="saveCar('Ionix Model Z')">Save Vehicle</button>
+      </div>
+      <div class="card product-card" data-name="Titan Overland 4x4">
+        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=500&q=80" alt="Titan Overland 4x4" />
+        <h3>Titan Overland 4x4</h3>
+        <p class="specs">V6 Twin-Turbo • Locking Diffs</p>
+        <p class="price">$64,900</p>
+        <button class="btn-save" onclick="saveCar('Titan Overland 4x4')">Save Vehicle</button>
+      </div>
+      <div class="card product-card" data-name="Sovereign LWB">
+        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=500&q=80" alt="Sovereign LWB" />
+        <h3>Sovereign LWB</h3>
+        <p class="specs">Executive Rear Lounge • Hybrid</p>
+        <p class="price">$82,500</p>
+        <button class="btn-save" onclick="saveCar('Sovereign LWB')">Save Vehicle</button>
+      </div>
+      <div class="card product-card" data-name="Vortex GT3">
+        <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=500&q=80" alt="Vortex GT3" />
+        <h3>Vortex GT3</h3>
+        <p class="specs">520 HP • Carbon Ceramic Brakes</p>
+        <p class="price">$138,000</p>
+        <button class="btn-save" onclick="saveCar('Vortex GT3')">Save Vehicle</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: FAQ Accordion -->
+  <section id="faq" class="container section">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">Do you offer nationwide home delivery? <span>+</span></button>
+        <div class="faq-answer">Yes. Cars delivers directly to your driveway anywhere in the country via enclosed or open carrier transport within 2 to 5 business days.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I trade in my current vehicle? <span>+</span></button>
+        <div class="faq-answer">Absolutely. Enter your VIN during checkout for an instant, locked-in trade-in valuation that applies directly toward your purchase.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What warranty comes with vehicles bought from Cars? <span>+</span></button>
+        <div class="faq-answer">Every vehicle includes a 7-day money-back test drive guarantee and a comprehensive 36-month / 36,000-mile bumper-to-bumper warranty.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Are financing and leasing options available online? <span>+</span></button>
+        <div class="faq-answer">Yes, we partner with over 25 major lenders to provide instant pre-qualification with zero impact on your credit score.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Stats Banner -->
+  <section class="stats-banner">
+    <div class="stats-overlay">
+      <span class="stat-pill">150-Point Certified Inspection</span>
+      <div class="stat-main">
+        <h2>20,000+</h2>
+        <p>VEHICLES DELIVERED TO HAPPY DRIVERS</p>
+      </div>
+      <span class="stat-pill">7-Day Risk-Free Return Policy</span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">CARS<span>.</span></div>
+        <p>The modern way to buy, trade, and finance premium vehicles online.</p>
+      </div>
+      <div>
+        <h4>Inventory</h4>
+        <a href="#new-arrivals">New Arrivals</a>
+        <a href="#electric">Electric Cars</a>
+        <a href="#categories">SUVs &amp; Trucks</a>
+      </div>
+      <div>
+        <h4>Ownership</h4>
+        <a href="#faq">Financing</a>
+        <a href="#faq">Trade-In Value</a>
+        <a href="#faq">Warranty Plans</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>sales@cars-store.com</p>
+        <p>1-800-555-CARS</p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Cars Inc. All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
